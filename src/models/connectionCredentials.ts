@@ -278,7 +278,8 @@ export class ConnectionCredentials implements IConnectionCredentials {
         if (typeof credentials.authenticationType === 'undefined') {
             authenticationType = utils.authTypeToString(AuthenticationTypes.SqlLogin);
         }
-        return authenticationType === utils.authTypeToString(AuthenticationTypes.SqlLogin);
+        return authenticationType === utils.authTypeToString(AuthenticationTypes.SqlLogin) ||
+            authenticationType === utils.authTypeToString(AuthenticationTypes.ActiveDirectoryPassword);
     }
 
     // Validates a string is not empty, returning undefined if true and an error message if not
@@ -292,7 +293,8 @@ export class ConnectionCredentials implements IConnectionCredentials {
     public static getAuthenticationTypesChoice(): INameValueChoice[] {
         let choices: INameValueChoice[] = [
             { name: LocalizedConstants.authTypeSql, value: utils.authTypeToString(AuthenticationTypes.SqlLogin) },
-            { name: LocalizedConstants.authTypeIntegrated, value: utils.authTypeToString(AuthenticationTypes.Integrated) }
+            { name: LocalizedConstants.authTypeIntegrated, value: utils.authTypeToString(AuthenticationTypes.Integrated) },
+            { name: LocalizedConstants.authTypeActiveDirectoryPassword, value: utils.authTypeToString(AuthenticationTypes.ActiveDirectoryPassword)}
         ];        // TODO When Azure Active Directory is supported, add this here
 
         return choices;

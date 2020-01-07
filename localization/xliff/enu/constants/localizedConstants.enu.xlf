@@ -101,6 +101,9 @@
         <trans-unit id="authTypeSql">
             <source xml:lang="en">SQL Login</source>
         </trans-unit>
+        <trans-unit id="authTypeActiveDirectoryPassword">
+            <source xml:lang="en">Active Directory - Password</source>
+        </trans-unit>
         <trans-unit id="usernamePrompt">
             <source xml:lang="en">User name</source>
         </trans-unit>

@@ -500,7 +500,8 @@
                 "default": "SqlLogin",
                 "enum": [
                   "Integrated",
-                  "SqlLogin"
+                  "SqlLogin",
+                  "ActiveDirectoryPassword"
                 ],
                 "description": "%mssql.connection.authenticationType%"
               },
