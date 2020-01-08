@@ -295,7 +295,7 @@ export class ConnectionCredentials implements IConnectionCredentials {
             { name: LocalizedConstants.authTypeSql, value: utils.authTypeToString(AuthenticationTypes.SqlLogin) },
             { name: LocalizedConstants.authTypeIntegrated, value: utils.authTypeToString(AuthenticationTypes.Integrated) },
             { name: LocalizedConstants.authTypeActiveDirectoryPassword, value: utils.authTypeToString(AuthenticationTypes.ActiveDirectoryPassword)}
-        ];        // TODO When Azure Active Directory is supported, add this here
+        ];
 
         return choices;
     }
