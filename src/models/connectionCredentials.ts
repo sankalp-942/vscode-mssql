@@ -300,8 +300,9 @@ export class ConnectionCredentials implements IConnectionCredentials {
     public static getAuthenticationTypesChoice(): INameValueChoice[] {
         let choices: INameValueChoice[] = [
             { name: LocalizedConstants.authTypeSql, value: utils.authTypeToString(AuthenticationTypes.SqlLogin) },
-            { name: LocalizedConstants.authTypeIntegrated, value: utils.authTypeToString(AuthenticationTypes.Integrated) }
-        ];        // TODO When Azure Active Directory is supported, add this here
+            { name: LocalizedConstants.authTypeIntegrated, value: utils.authTypeToString(AuthenticationTypes.Integrated) },
+            { name: LocalizedConstants.authTypeAzureActiveDirectory, value: utils.authTypeToString(AuthenticationTypes.ActiveDirectoryUniversal)}
+        ];
 
         return choices;
     }
