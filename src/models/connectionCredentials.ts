@@ -11,6 +11,7 @@ import { ConnectionStore } from './connectionStore';
 import * as utils from './utils';
 import { QuestionTypes, IQuestion, IPrompter, INameValueChoice } from '../prompts/question';
 import SqlToolsServerClient from '../languageservice/serviceclient';
+import { extensions, window, env, Uri } from 'vscode';
 
 // Concrete implementation of the IConnectionCredentials interface
 export class ConnectionCredentials implements IConnectionCredentials {
@@ -199,6 +200,25 @@ export class ConnectionCredentials implements IConnectionCredentials {
                         && SqlToolsServerClient.instance.getServiceVersion() === 1
                     ) {
                         return LocalizedConstants.macSierraRequiredErrorMessage;
+                    } else if (value === utils.authTypeToString(AuthenticationTypes.ActiveDirectoryUniversal)) {
+                        //TODO: parameterize all the strings
+                        // check if Azure Account is installed - if not, prompt user to install
+                        if (!extensions.getExtension('ms-vscode.azure-account')) {
+                            let installAzureAccount = 'Install Azure Account';
+                            window.showInformationMessage(
+                                'The Azure Account Extension is needed for this feature. Please download it before continuing',
+                                installAzureAccount
+                                )
+                            .then(selection => {
+                              if (selection === installAzureAccount) {
+                                env.openExternal(Uri.parse(
+                                    'vscode:extension/ms-vscode.azure-account'));
+                              }
+                            });
+                            return undefined;
+                        }
+                        // Also, hook into AAD MFA here
+                        return undefined;
                     }
                     return undefined;
                 },
